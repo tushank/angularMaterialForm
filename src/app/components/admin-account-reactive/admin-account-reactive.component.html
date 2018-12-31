@@ -1,0 +1,63 @@
+<div>
+  <form (ngSubmit)="save()" [formGroup]="adminAccountForm">
+
+    <div>
+      <mat-form-field>
+        <input type="text" matInput id="loginNameId" placeholder="Login Name" formControlName="loginName" [ngClass]="{'is-invalid': (adminAccountForm.get('loginName').touched || adminAccountForm.get('loginName').dirty) && !adminAccountForm.get('loginName').valid }">
+      </mat-form-field>
+      <div *ngIf="adminAccountForm.get('loginName').invalid && adminAccountForm.get('loginName').touched" class="text-danger">
+        <div *ngIf="adminAccountForm.get('loginName').errors.required">First Name is required</div>
+      </div>
+    </div>
+
+
+
+    <div>
+      <mat-form-field>
+        <input type="password" matInput placeholder="Password" formControlName="password" [ngClass]="{'is-invalid': (adminAccountForm.get('password').touched || adminAccountForm.get('password').dirty) && !adminAccountForm.get('password').valid }" />
+      </mat-form-field>
+      <div *ngIf="adminAccountForm.get('password').invalid && adminAccountForm.get('password').touched" class="text-danger">
+        <div *ngIf="adminAccountForm.get('password').errors.required">Password is required</div>
+        <div *ngIf="adminAccountForm.get('password').errors.minlength">Password must be at least 3 characters</div>
+      </div>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <input type="text" matInput placeholder="Full Name" formControlName="fullName" [ngClass]="{'is-invalid': (adminAccountForm.get('fullName').touched || adminAccountForm.get('fullName').dirty) && !adminAccountForm.get('fullName').valid }" />
+      </mat-form-field>
+
+      <div *ngIf="adminAccountForm.get('fullName').invalid && adminAccountForm.get('fullName').touched" class="text-danger">
+        <div *ngIf="adminAccountForm.get('fullName').errors.required">Full Name is required</div>
+      </div>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <input type="text" matInput placeholder="Admin Description" formControlName="adminDescription" [ngClass]="{'is-invalid': (adminAccountForm.get('adminDescription').touched || adminAccountForm.get('adminDescription').dirty) && !adminAccountForm.get('adminDescription').valid }" />
+      </mat-form-field>
+
+      <div *ngIf="adminAccountForm.get('adminDescription').invalid && adminAccountForm.get('adminDescription').touched"
+        class="text-danger">
+        <div *ngIf="adminAccountForm.get('adminDescription').errors.required">Admin Description is required</div>
+      </div>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <mat-select placeholder="Select">
+          <mat-option *ngFor="let  adminGroupsDTOList of adminGroupsDTOLists" [value]="adminGroupsDTOList">{{adminGroupsDTOList}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <button type="submit" mat-raised-button color="primary" [title]="adminAccountForm.valid ? 'Save your entered data' : 'Disabled until the form data is valid'"
+        [disabled]="!adminAccountForm.valid">
+        Save
+      </button>
+      <button mat-raised-button color="primary" class="btn" type="reset">Clear</button>
+    </div>
+
+  </form>
+</div>
